@@ -1,0 +1,24 @@
+{
+  "name": "bb-plugin-pi-command-sync",
+  "version": "0.2.0",
+  "type": "module",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/Diffuzmetall/bb-plugin-pi-command-sync.git" },
+  "engines": { "bb": "0.45.0", "bbPluginSdk": "0.6.15", "node": ">=22" },
+  "os": ["linux", "darwin"],
+  "bb": {
+    "name": "Pi Command Sync",
+    "description": "Native command synchronization addon for the existing Pi provider; requires a compatible BB Pi bridge.",
+    "branding": { "icon": "Zap" },
+    "server": "./server.ts",
+    "host": "./host.ts"
+  },
+  "files": ["server.ts", "host.ts", "contract.ts", "extension-source.ts", "runtime", "scripts", "dist", "README.md", "LICENSE"],
+  "scripts": {
+    "build": "node scripts/prepare-extension.mjs && bb plugin build",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/plugin.test.mjs"
+  },
+  "dependencies": { "@get-bb/plugin-sdk": "0.6.15", "zod": "4.6.5" },
+  "devDependencies": { "@types/node": "^22.0.0", "typescript": "^5.7.0" }
+}
