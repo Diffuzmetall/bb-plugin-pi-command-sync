@@ -60,6 +60,12 @@ The launcher prefers the Pi CLI resolved next to the running Node
 checked) and falls back to `pi` on `PATH`. Terminal Pi is untouched: the
 extension is loaded only through this launcher.
 
+One launcher deliberately owns `BB_PI_BRIDGE_COMMAND`: a second addon cannot
+replace it without replacing this one. To cooperate instead, the launcher also
+appends one further extension when another plugin supplies all five
+`BB_PI_SUBAGENTS_*` variables, and skips it for the `--no-session` discovery
+child. Without those variables the launcher is exactly the simple form above.
+
 ### 3. Catalog publishing (`runtime/commands.ts`)
 
 On every `session_start` — and therefore on every `/reload` — the extension
