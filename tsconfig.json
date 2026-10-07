@@ -24,7 +24,6 @@
     "server.ts",
     "host.ts",
     "contract.ts",
-    "extension-source.ts",
-    "vendor/*.d.mts"
+    "extension-source.ts"
   ]
 }

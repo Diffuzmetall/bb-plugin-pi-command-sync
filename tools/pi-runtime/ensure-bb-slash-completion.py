@@ -2,11 +2,16 @@
 """Exact BB 0.45 Pi command completion and native-menu repair; no cache mutation."""
 import hashlib
 import json
+import os
 import shutil
 import sys
 from pathlib import Path
 
-TARGET = Path('/home/ubuntu/.bb-server/app/node_modules/bb-app/server/dist/builtin-plugins/provider-pi/dist/host.js')
+# Reference installation; point BB_PI_HOST_ARTIFACT at another provider-pi host.js.
+TARGET = Path(os.environ.get(
+    'BB_PI_HOST_ARTIFACT',
+    '/home/ubuntu/.bb-server/app/node_modules/bb-app/server/dist/builtin-plugins/provider-pi/dist/host.js',
+))
 EDITS = (
     ('await t.requestOk(n,r);return}catch(a)',
      'return await t.requestOk(n,r)}catch(a)'),

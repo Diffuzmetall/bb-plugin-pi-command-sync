@@ -53,7 +53,8 @@ test("packaged source uses public contracts and carries no master checkout depen
   assert.deepEqual(violations, []);
   assert.deepEqual(scan.privateDependencies, []);
   const artifact = readFileSync(join(root, "dist/host.js"), "utf8");
-  assert(!artifact.includes("/home/ubuntu/Projects/master/"));
+  // The built artifact must not depend on the author's checkout layout.
+  assert(!/\/Users\/|\/home\/[a-z0-9_-]+\/Projects\//i.test(artifact));
   assert(!artifact.includes("experimental_providerBridge"), "Addon must not ship a second bridge");
   assert(!manifest.bb.skills, "Do not register stale Pi+ instructions");
   assert(!manifest.files.includes("vendor"));
